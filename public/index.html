@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invoice Generator</title>
+  <meta name="description" content="Create clients and invoices and download professional PDF invoices with VAT." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230d9488'/><path d='M10 9h12M10 15h12M10 21h7' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#/" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" /><path d="M10 9h12M10 15h12M10 21h7" /></svg>
+        </span>
+        <span>Invoice Generator</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#/" data-nav="invoices">Invoices</a>
+        <a href="#/clients" data-nav="clients">Clients</a>
+      </nav>
+      <a href="#/new" class="btn btn-primary btn-new">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" /></svg>
+        <span>New invoice</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="view" class="container" tabindex="-1"></main>
+
+  <!-- Quick add / edit client -->
+  <dialog id="client-dialog" class="dialog">
+    <form id="client-form" method="dialog" novalidate>
+      <div class="dialog-head">
+        <h2 id="client-dialog-title">New client</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Close">&times;</button>
+      </div>
+      <div class="grid-2">
+        <label class="field"><span>Contact name *</span><input name="name" required maxlength="120" /></label>
+        <label class="field"><span>Company</span><input name="company" maxlength="160" /></label>
+        <label class="field"><span>Email</span><input name="email" type="email" maxlength="200" /></label>
+        <label class="field"><span>VAT number</span><input name="vat_number" maxlength="40" /></label>
+      </div>
+      <label class="field"><span>Address</span><textarea name="address" rows="3" maxlength="500"></textarea></label>
+      <p class="form-error" data-error hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save client</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="/money.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
